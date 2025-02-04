@@ -4,6 +4,8 @@
 
 import Foundation
 
+public typealias StreamUser = User
+
 /// Model for the user's info.
 public struct User: Identifiable, Hashable, Sendable, Codable {
     public let id: String
