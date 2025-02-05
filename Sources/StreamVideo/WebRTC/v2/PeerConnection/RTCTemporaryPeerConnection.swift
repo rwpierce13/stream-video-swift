@@ -72,7 +72,8 @@ final class RTCTemporaryPeerConnection {
 
     /// Cleans up resources when the instance is being deallocated.
     deinit {
-        peerConnection.transceivers.forEach { $0.stopInternal() }
+        let array = peerConnection.transceivers as [RTCRtpTransceiver]
+        array.forEach { $0.stopInternal() }
         Task { [peerConnection] in await peerConnection.close() }
     }
 
