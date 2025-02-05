@@ -208,7 +208,7 @@ final class StreamRTCPeerConnection: StreamRTCPeerConnectionProtocol, @unchecked
             /// sure that access to `RTCVideoTrack` properties, will be handled correctly. Otherwise
             /// if we try to access any property/method on a `RTCVideoTrack` instance whose
             /// peerConnection has closed, we will get blocked on the Main Thread.
-            let array = source.transceivers as [RTCRtpTransceiver]
+            let array: [RTCRtpTransceiver] = source.transceivers.compactMap { $0 as RTCRtpTransceiver }
             array.forEach { $0.stopInternal() }
             source.close()
         }
